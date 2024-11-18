@@ -3,7 +3,6 @@ import { CreateProject } from "@/components/project/ProjectButton";
 import { fetchAllProject } from "@/lib/data";
 import { redirect } from "next/navigation";
 
-
 export default async function Page() {
   const projects = await fetchAllProject();
 
@@ -20,8 +19,7 @@ export default async function Page() {
     );
   }
 
-
-  const firstProjectId = projects[0].id; // 첫 번째 프로젝트 ID 가져오기
+  const firstProjectId = projects[0].id;
   redirect(`/projects/${firstProjectId}`);
 
 

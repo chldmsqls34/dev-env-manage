@@ -1,8 +1,9 @@
 'use client';
 
+import { FilledButton } from '@/components/ui/FilledButton';
+import { TextButton } from '@/components/ui/TextButton';
 import { createTask, deleteTask, updateTask } from '@/lib/taskAction';
 import { useRouter } from 'next/navigation';
-import { Button } from '../ui/button';
 
 export function CreateTask({projectId}: {projectId: string}) {
   const handleSubmit = async (e: React.FormEvent) => {
@@ -10,7 +11,6 @@ export function CreateTask({projectId}: {projectId: string}) {
 
     try {
       await createTask(projectId,'Enter Title Here');
-
       
     } catch (error) {
       console.error('Error creating task:', error);
@@ -18,10 +18,9 @@ export function CreateTask({projectId}: {projectId: string}) {
     }
   }
   return (
-    <Button onClick={handleSubmit} className='bg-[#E79057] hover:bg-[#E79057]'>
+    <FilledButton onClick={handleSubmit}>
       Add New
-    </Button>
-
+    </FilledButton>
   );
 }
 
@@ -41,10 +40,9 @@ export function UpdateTask({ taskId,title,startDate,endDate,content,status,close
     }
   }
   return (
-    <Button className="rounded-md border p-2 bg-white text-black hover:bg-gray-100" onClick={handleSubmit}>
-      Save
-    </Button>
-
+    <FilledButton onClick={handleSubmit}>
+      Done
+    </FilledButton>
   );
 }
 
@@ -70,10 +68,8 @@ export function DeleteTask({ taskId }: { taskId: string }) {
   };
 
   return (
-    <Button
-      onClick={handleDelete} 
-      className="rounded-md border p-2 bg-white text-black hover:bg-gray-100">
+    <TextButton onClick={handleDelete}>
       Delete
-    </Button>
+    </TextButton>
   );
 }

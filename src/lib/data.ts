@@ -51,12 +51,12 @@ export async function fetchAllProject(): Promise<ClientProject[]>{
 //   }
 // }
 
-export async function fetchProjectById(projectId: string): Promise<ClientProject> {
+export async function fetchProjectById(projectId: string): Promise<ClientProject | null> {
   try {
     const projectCollection = await getCollection('projects');
     const project = await projectCollection.findOne({ _id: new ObjectId(projectId)}) as Project;
     if (!project) {
-      throw new Error('프로젝트 정보가 없습니다.');
+      return null;
     }
     return {
       id: project._id?.toString() || '',

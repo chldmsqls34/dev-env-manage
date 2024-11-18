@@ -1,6 +1,5 @@
 "use client"
 import { ClientProject, ProgressData } from "@/types/Project";
-import { CreateTask } from "./TaskButton";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -11,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 import { DeleteProject, UpdateProject } from "./ProjectButton";
 import { Progress } from "../ui/progress";
+import { CreateTask } from "./task/TaskButton";
 
 
 export default function ProjectInfo({project,progressData}:{project:ClientProject,progressData:ProgressData}) {

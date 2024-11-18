@@ -1,15 +1,17 @@
 "use client";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+
 import { CalendarIcon, CheckIcon } from "lucide-react";
-import { Button } from "../ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Calendar } from "../ui/calendar";
 import { format, parseISO } from "date-fns";
-import { DeleteTask, UpdateTask } from "./TaskButton";
 import { ClientTask } from "@/types/Project";
 import dynamic from "next/dynamic";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { DeleteTask, UpdateTask } from "./TaskButton";
+import { TextButton } from "@/components/ui/TextButton";
 
 const EditorBox = dynamic(() => import('./EditorBox'), {
   ssr: false,
@@ -95,8 +97,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
           </PopoverContent>
         </Popover>
         <div className="grow"></div>
-        <UpdateTask taskId={task.id} title={title} startDate={startDate} endDate={endDate} content={content} status={check} closeModal={closeModal} />
-        <Button className="rounded-md border p-2 bg-white text-black hover:bg-gray-100">Duplicate</Button>
+        <TextButton>Duplicate</TextButton>
         <DeleteTask taskId={task.id} />
       </div>
       <div className="flex justify-center pt-6 border-t border-t-gray-200">
@@ -172,7 +173,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                 </div>
 
                 <div className="flex justify-end space-x-4 pt-4">
-                  <Button className="rounded-md border p-2 bg-white text-black hover:bg-gray-100" onClick={()=>{setIsModalOpen(false)}}>Close</Button>
+                  <TextButton onClick={()=>{setIsModalOpen(false)}}>Cancle</TextButton>
                   <UpdateTask taskId={task.id} title={title} startDate={startDate} endDate={endDate} content={content} status={check} closeModal={closeModal} />
                 </div>
               </div>

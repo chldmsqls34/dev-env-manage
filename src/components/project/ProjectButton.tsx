@@ -1,8 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Button } from '../ui/button';
 import { createProject, deleteProject, updateProject } from '@/lib/projectAction';
+import { FilledButton } from '../ui/FilledButton';
+import { SecondaryButton } from '../ui/SecondaryButton';
 
 export function CreateProject() {
   const router = useRouter();
@@ -21,15 +22,14 @@ export function CreateProject() {
     }
   }
   return (
-    <Button onClick={handleSubmit} className='w-[220px] border-[#E79057] border bg-white text-[#E79057] hover:bg-white'>
+    <SecondaryButton onClick={handleSubmit} className='w-[220px]'>
       Add New Page
-    </Button>
+    </SecondaryButton>
 
   );
 }
 
 export function UpdateProject({ projectId,title,startDate,endDate }: { projectId: string,title:string,startDate:Date|undefined,endDate:Date|undefined }) {
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,10 +42,9 @@ export function UpdateProject({ projectId,title,startDate,endDate }: { projectId
     }
   }
   return (
-    <Button onClick={handleSubmit} className='bg-[#E79057] hover:bg-[#E79057]'>
+    <FilledButton onClick={handleSubmit}>
       Save
-    </Button>
-
+    </FilledButton>
   );
 }
 
@@ -63,7 +62,7 @@ export function DeleteProject({ projectId }: { projectId: string }) {
     try {
       await deleteProject(projectId);
       alert('프로젝트가 성공적으로 삭제되었습니다.');
-      router.refresh();
+      router.push('/projects');
     } catch (error) {
       console.error('Error deleting project:', error);
       alert('프로젝트 삭제 중 오류가 발생했습니다.');
@@ -71,8 +70,8 @@ export function DeleteProject({ projectId }: { projectId: string }) {
   };
 
   return (
-    <Button onClick={handleDelete} className='bg-[#E79057] hover:bg-[#E79057] hover:border-[#E26F24] focus:bg-[#AD4500]'>
+    <FilledButton onClick={handleDelete} >
       Delete Page
-    </Button>
+    </FilledButton>
   );
 }

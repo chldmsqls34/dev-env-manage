@@ -1,7 +1,6 @@
 import Sidebar from "@/components/project/Sidebar";
 import { fetchAllProject } from "@/lib/data";
 
-
 export default async function Layout({ children }: { children: React.ReactNode }) {
 
   const projects = await fetchAllProject();

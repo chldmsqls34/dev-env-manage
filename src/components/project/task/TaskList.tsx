@@ -2,6 +2,7 @@
 import { ClientTask } from "@/types/Project";
 import TaskCard from "./TaskCard";
 
+
 export default function TaskList({tasks}:{tasks:ClientTask[]}) {
 
   return(

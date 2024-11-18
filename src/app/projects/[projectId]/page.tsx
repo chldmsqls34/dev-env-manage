@@ -1,6 +1,8 @@
 import ProjectInfo from "@/components/project/ProjectInfo";
-import TaskList from "@/components/project/TaskList";
+import TaskList from "@/components/project/task/TaskList";
 import { fetchProgress, fetchProjectById, fetchTaskByProjectId } from "@/lib/data";
+import { notFound } from "next/navigation";
+
 
 export default async function Page({
   params,
@@ -14,6 +16,10 @@ export default async function Page({
     fetchTaskByProjectId(projectId),
     fetchProgress(projectId),
   ]);
+
+  if(!project){
+    notFound();
+  }
 
   if (!tasks || tasks.length === 0) {
     return (

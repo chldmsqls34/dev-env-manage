@@ -21,7 +21,6 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
     project.project_to ? parseISO(project.project_to) : undefined
   );
   const [title, setTitle] = useState<string>(project.title);
-
   const percentage = progressData.percentage;
   const total = progressData.total;
   const completed = progressData.completed;

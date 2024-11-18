@@ -1,4 +1,5 @@
 import ProjectInfo from "@/components/project/ProjectInfo";
+import { CreateTaskWithSecondaryButton } from "@/components/project/task/TaskButton";
 import TaskList from "@/components/project/task/TaskList";
 import { fetchProgress, fetchProjectById, fetchTaskByProjectId } from "@/lib/data";
 import { notFound } from "next/navigation";
@@ -26,7 +27,10 @@ export default async function Page({
       <main className="w-full h-screen">
         <div className="flex flex-col w-full h-full bg-slate-100 items-center justify-center">
           <ProjectInfo project={project} progressData={progressData}/>
-          <div className="w-full h-full px-6 py-4 space-y-4 bg-gray-100">
+          <div className="flex flex-col w-full h-full px-6 py-4 space-y-4 bg-gray-100 items-center justify-center">
+            <h1 className="text-lg font-bold">There is no board yet.</h1>
+            <p className="text-sm">Click the button and start flashing!</p>
+            <CreateTaskWithSecondaryButton projectId={projectId} />
           </div>
         </div>
       </main>

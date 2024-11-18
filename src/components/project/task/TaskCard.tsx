@@ -100,8 +100,8 @@ export default function TaskCard({task}:{task:ClientTask}) {
         <TextButton>Duplicate</TextButton>
         <DeleteTask taskId={task.id} />
       </div>
-      <div className="flex justify-center pt-6 border-t border-t-gray-200">
-        <button onClick={()=>{setIsModalOpen(true);setTitle(task.title);setContent(task.content||"")}}>Add Contents</button>
+      <div className="flex justify-center pt-5 border-t border-t-gray-200">
+        <TextButton onClick={()=>{setIsModalOpen(true);setTitle(task.title);setContent(task.content||"")}}>Add Contents</TextButton>
         {
           isModalOpen && (
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">

@@ -3,6 +3,8 @@
 import { FilledButton } from '@/components/ui/FilledButton';
 import { TextButton } from '@/components/ui/TextButton';
 import { createTask, deleteTask, updateTask } from '@/lib/taskAction';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
+
 import { useRouter } from 'next/navigation';
 
 export function CreateTask({projectId}: {projectId: string}) {
@@ -21,6 +23,27 @@ export function CreateTask({projectId}: {projectId: string}) {
     <FilledButton onClick={handleSubmit}>
       Add New
     </FilledButton>
+  );
+}
+
+export function CreateTaskWithSecondaryButton({ projectId }: { projectId: string }) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await createTask(projectId,'Enter Title Here');
+      
+    } catch (error) {
+      console.error('Error creating task:', error);
+      alert('Failed to create task.');
+    }
+  }
+  return (
+    <button onClick={handleSubmit}>
+      <PlusCircleIcon
+        className="w-24 h-24 text-[#E79057] active:text-[#AD4500] stroke-current stroke-1"
+      />
+    </button>
   );
 }
 

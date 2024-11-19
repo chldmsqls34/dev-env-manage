@@ -10,7 +10,7 @@ export default async function Page() {
 
   if (!projects || projects.length === 0) {
     return (
-      <main className="w-screen h-screen">
+      <main className="w-screen h-screen flex">
         <div className="flex w-full h-full mx-40">
           <div>
             <Sidebar projects={projects} project={project}/>

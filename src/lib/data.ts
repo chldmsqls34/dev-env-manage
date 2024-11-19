@@ -15,8 +15,8 @@ export async function fetchAllProject(): Promise<ClientProject[]>{
     const projects = data.map((project) => ({
       id: project._id? project._id.toString():'',
       title: project.title,
-      project_from: project.project_from? project.project_from.toISOString().split('T')[0] : undefined,
-      project_to: project.project_to? project.project_to.toISOString().split('T')[0]: undefined,
+      project_from: project.project_from? project.project_from : undefined,
+      project_to: project.project_to? project.project_to: undefined,
     }))
     return projects
   }catch(error){
@@ -64,8 +64,8 @@ export async function fetchProjectById(projectId: string): Promise<ClientProject
     return {
       id: project._id?.toString() || '',
       title: project.title,
-      project_from: project.project_from? project.project_from.toISOString().split('T')[0] : undefined,
-      project_to: project.project_to? project.project_to.toISOString().split('T')[0] : undefined,
+      project_from: project.project_from? project.project_from : undefined,
+      project_to: project.project_to? project.project_to : undefined,
       tasks: taskTitles
 
     } as ClientProject;
@@ -84,8 +84,8 @@ export async function fetchTaskByProjectId(projectId: string): Promise<ClientTas
       id: task._id?.toString() || '',
       project_id: task.project_id,
       title: task.title,
-      task_from: task.task_from? task.task_from.toISOString().split('T')[0]: undefined,
-      task_to: task.task_to? task.task_to.toISOString().split('T')[0]:undefined,
+      task_from: task.task_from? task.task_from : undefined,
+      task_to: task.task_to? task.task_to :undefined,
       content: task.content,
       status: task.status
     })) as ClientTask[];

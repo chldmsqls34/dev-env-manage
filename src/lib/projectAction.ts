@@ -3,7 +3,7 @@ import clientPromise from "./mongodb";
 import { Project } from "@/types/Project";
 import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
-import { convertToKoreanDate } from "./utils";
+import { formatInTimeZone } from "date-fns-tz";
 
 
 async function getCollection(collectionName: string) {
@@ -43,8 +43,13 @@ export async function deleteProject(projectId: string) {
 
 export async function updateProject(projectId:string, title:string,startDate:Date|undefined,endDate:Date|undefined){
   try {
-    const formatStartDate = startDate? convertToKoreanDate(startDate):undefined;
-    const formatEndDate = endDate? convertToKoreanDate(endDate):undefined;
+    const koreanTimeZone = 'Asia/Seoul';
+    const formatStartDate = startDate
+      ? formatInTimeZone(startDate, koreanTimeZone, 'yyyy-MM-dd HH:mm:ssXXX')
+      : undefined;
+    const formatEndDate = endDate
+      ? formatInTimeZone(endDate, koreanTimeZone, 'yyyy-MM-dd HH:mm:ssXXX')
+      : undefined;
     const projectCollection = await getCollection('projects');
     await projectCollection.updateOne({
       _id: new ObjectId(projectId)

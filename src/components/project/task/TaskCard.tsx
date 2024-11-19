@@ -3,7 +3,7 @@
 import { CalendarIcon, CheckIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { ClientTask } from "@/types/Project";
 import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { DeleteTask, UpdateTask } from "./TaskButton";
 import { TextButton } from "@/components/ui/TextButton";
+import { ko } from "date-fns/locale";
 
 const EditorBox = dynamic(() => import('./EditorBox'), {
   ssr: false,
@@ -20,10 +21,10 @@ const EditorBox = dynamic(() => import('./EditorBox'), {
 export default function TaskCard({task}:{task:ClientTask}) {
   const [title, setTitle] = useState<string>(task.title);
   const [startDate, setStartDate] = useState<Date | undefined>(
-    task.task_from ? parseISO(task.task_from) : undefined
+    task.task_from ? new Date(task.task_from) : undefined
   );
   const [endDate, setEndDate] = useState<Date | undefined>(
-    task.task_to ? parseISO(task.task_to) : undefined
+    task.task_to ? new Date(task.task_to) : undefined
   );
   const [content, setContent] = useState<string>(task.content||"");
   const [check, setCheck] = useState<boolean|undefined>(task.status);
@@ -45,7 +46,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
         {check && <CheckIcon className="w-4 h-4" />}
       </div>
       <CardTitle>
-        <h1 className="text-2xl text-gray-700">{task.title}</h1>
+        <input type="text" value={task.title} className="text-2xl text-gray-700" placeholder="Board Title Here..." disabled={true}/>
       </CardTitle>
     </CardHeader>
     <CardContent>
@@ -61,7 +62,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
               )}
             >
               <CalendarIcon />
-              {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
+              {startDate ? format(startDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -70,6 +71,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
               selected={startDate}
               onSelect={setStartDate}
               initialFocus
+              locale={ko}
             />
           </PopoverContent>
         </Popover>
@@ -84,7 +86,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
               )}
             >
               <CalendarIcon />
-              {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+              {endDate ? format(endDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -93,6 +95,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
               selected={endDate}
               onSelect={setEndDate}
               initialFocus
+              locale={ko}
             />
           </PopoverContent>
         </Popover>
@@ -117,7 +120,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                     >
                       {check && <CheckIcon className="w-4 h-4" />}
                     </div>
-                    <input type="text" value={title} className="text-3xl pt-5" onChange={(e)=>setTitle(e.target.value)}/>
+                    <input type="text" value={title} className="text-3xl pt-5" onChange={(e)=>setTitle(e.target.value)} placeholder="Board Title Here"/>
                   </div>
                   <div className="space-x-4">
                     <span>From</span>
@@ -131,7 +134,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                           )}
                         >
                           <CalendarIcon />
-                          {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
+                          {startDate ? format(startDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
@@ -140,6 +143,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                           selected={startDate}
                           onSelect={setStartDate}
                           initialFocus
+                          locale={ko}
                         />
                       </PopoverContent>
                     </Popover>
@@ -154,7 +158,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                           )}
                         >
                           <CalendarIcon />
-                          {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                          {endDate ? format(endDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0">
@@ -163,6 +167,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                           selected={endDate}
                           onSelect={setEndDate}
                           initialFocus
+                          locale={ko}
                         />
                       </PopoverContent>
                     </Popover>

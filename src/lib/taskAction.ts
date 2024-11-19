@@ -1,12 +1,9 @@
 'use server';
-
-
 import { ObjectId } from 'mongodb';
 import clientPromise from "./mongodb";
 import { Task } from "@/types/Project";
 import { revalidatePath } from 'next/cache';
-import { convertToKoreanDate } from './utils';
-
+import { formatInTimeZone } from 'date-fns-tz';
 
 async function getCollection(collectionName: string) {
   const client = await clientPromise;
@@ -14,12 +11,12 @@ async function getCollection(collectionName: string) {
   return db.collection<Task>(collectionName);
 }
 
-export async function createTask(projectId:string,title: string) {
+export async function createTask(projectId:string) {
   try {
     const taskCollection = await getCollection('tasks');
     await taskCollection.insertOne({
       project_id: projectId,
-      title: title,
+      title: '',
     });
     revalidatePath(`/projects/${projectId}`);
   } catch (error) {
@@ -41,9 +38,13 @@ export async function deleteTask(taskId: string) {
 
 export async function updateTask(taskId:string, title:string,startDate:Date|undefined,endDate:Date|undefined,content:string,status:boolean|undefined){
   try {
-    const formatStartDate = startDate? convertToKoreanDate(startDate):undefined;
-    const formatEndDate = endDate? convertToKoreanDate(endDate):undefined;
-
+    const koreanTimeZone = 'Asia/Seoul';
+    const formatStartDate = startDate
+      ? formatInTimeZone(startDate, koreanTimeZone, 'yyyy-MM-dd HH:mm:ssXXX')
+      : undefined;
+    const formatEndDate = endDate
+      ? formatInTimeZone(endDate, koreanTimeZone, 'yyyy-MM-dd HH:mm:ssXXX')
+      : undefined;
     const taskCollection = await getCollection('tasks');
     await taskCollection.updateOne({
       _id: new ObjectId(taskId)

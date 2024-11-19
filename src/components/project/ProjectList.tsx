@@ -29,7 +29,7 @@ export default function ProjectList({projects,projectDetail}: {projects: ClientP
               >
                 <circle cx="12" cy="12" r="10" />
               </svg>
-              <p>{project.title ? project.title : 'Enter Title Name'}</p>
+              <p>{project.title ? project.title : 'Enter Title Here'}</p>
             </button>
             {isActive && projectDetail?.id === project.id && projectDetail.tasks && (
               projectDetail.tasks.map((task, index) => (
@@ -41,7 +41,7 @@ export default function ProjectList({projects,projectDetail}: {projects: ClientP
                   >
                     <circle cx="12" cy="12" r="10" />
                   </svg>
-                  <p className="text-xs pl-2">{task}</p>
+                  <p className="text-xs pl-2">{task ===''? 'Board Title Here' : task }</p>
                 </div>
               ))
             )}

@@ -26,7 +26,7 @@ export default async function Page({
 
   if (!tasks || tasks.length === 0) {
     return (
-      <main className="w-screen h-screen">
+      <main className="w-full h-screen flex">
         <div className="flex w-full h-full mx-40 justify-center">
           <div className="w-28 md:w-64">
             <Sidebar projects={projects} project={project}/>

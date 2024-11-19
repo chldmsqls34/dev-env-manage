@@ -7,18 +7,19 @@ import { Button } from "../ui/button";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { cn } from "@/lib/utils";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { DeleteProject, UpdateProject } from "./ProjectButton";
 import { Progress } from "../ui/progress";
 import { CreateTask } from "./task/TaskButton";
+import { ko } from "date-fns/locale";
 
 
 export default function ProjectInfo({project,progressData}:{project:ClientProject,progressData:ProgressData}) {
   const [startDate, setStartDate] = useState<Date | undefined>(
-    project.project_from ? parseISO(project.project_from) : undefined
+    project.project_from ? new Date(project.project_from) : undefined
   );
   const [endDate, setEndDate] = useState<Date | undefined>(
-    project.project_to ? parseISO(project.project_to) : undefined
+    project.project_to ? new Date(project.project_to) : undefined
   );
   const [title, setTitle] = useState<string>(project.title);
   const percentage = progressData.percentage;
@@ -30,7 +31,7 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
       <Card className="w-full h-full rounded-none border-none">
         <CardHeader>
           <CardTitle>
-            <input type="text" value={title} className="text-4xl pt-12 pb-2 text-gray-700" onChange={(e)=>setTitle(e.target.value)} placeholder="Enter Title Name"/>
+            <input type="text" value={title} className="text-4xl pt-12 pb-2 text-gray-700" onChange={(e)=>setTitle(e.target.value)} placeholder="Enter Title Here"/>
             <div className="flex space-x-4 items-center">
               <p className="text-sm text-gray-400">{completed}/{total}</p>
               <p className="text-sm text-gray-400">Completed</p>
@@ -51,7 +52,7 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
                   )}
                 >
                   <CalendarIcon />
-                  {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
+                  {startDate ? format(startDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
@@ -60,6 +61,8 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
                   selected={startDate}
                   onSelect={setStartDate}
                   initialFocus
+                  locale={ko}
+
                 />
               </PopoverContent>
             </Popover>
@@ -74,7 +77,7 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
                   )}
                 >
                   <CalendarIcon />
-                  {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                  {endDate ? format(endDate, "yyyy/MM/dd", { locale: ko }) : <span>Pick a date</span>}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
@@ -83,6 +86,7 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
                   selected={endDate}
                   onSelect={setEndDate}
                   initialFocus
+                  locale={ko}
                 />
               </PopoverContent>
             </Popover>

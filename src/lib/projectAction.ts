@@ -34,7 +34,7 @@ export async function deleteProject(projectId: string) {
   try {
     const projectCollection = await getCollection('projects');
     await projectCollection.deleteOne({ _id: new ObjectId(projectId) });
-    return { message: 'Deleted Project' };
+    revalidatePath('/projects');
   } catch (error) {
     console.error('Failed to delete project:', error);
     return { message: 'Database Error: Failed to Delete Project.', error };

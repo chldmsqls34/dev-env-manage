@@ -71,7 +71,7 @@ export function DeleteProject({ projectId }: { projectId: string }) {
 
   return (
     <FilledButton onClick={handleDelete} >
-      Delete Page
+      Delete
     </FilledButton>
   );
 }

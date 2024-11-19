@@ -172,7 +172,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                   <EditorBox content={content} setContent={setContent}/>
                 </div>
 
-                <div className="flex justify-end space-x-4 pt-4">
+                <div className="flex justify-end space-x-4 py-2">
                   <TextButton onClick={()=>{setIsModalOpen(false)}}>Cancle</TextButton>
                   <UpdateTask taskId={task.id} title={title} startDate={startDate} endDate={endDate} content={content} status={check} closeModal={closeModal} />
                 </div>

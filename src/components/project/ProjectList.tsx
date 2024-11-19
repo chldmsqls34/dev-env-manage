@@ -16,7 +16,7 @@ export default function ProjectList({projects,projectDetail}: {projects: ClientP
             <button
               onClick={()=>router.push(`/projects/${project.id}`)}
               className={clsx(
-                "flex h-[40px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-[#F5F5F5] md:flex-none md:justify-start md:p-2 md:px-3",
+                "flex h-[40px] w-full grow items-center justify-start gap-2 rounded-md bg-gray-50 p-2 hover:bg-[#F5F5F5] md:px-3",
                 {
                   'bg-[#F5F5F5]': isActive,
                 }
@@ -24,12 +24,12 @@ export default function ProjectList({projects,projectDetail}: {projects: ClientP
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={clsx("h-2 w-2", { 'fill-[#00F38D]': isActive, 'fill-gray-400': !isActive })}
+                className={clsx("h-1 w-1 md:h-2 md:w-2", { 'fill-[#00F38D]': isActive, 'fill-gray-400': !isActive })}
                 viewBox="0 0 24 24"
               >
                 <circle cx="12" cy="12" r="10" />
               </svg>
-              <p>{project.title ? project.title : 'Enter Title Name'}</p>
+              <p className='truncate text-xs md:text-sm'>{project.title ? project.title : 'Enter Title Here'}</p>
             </button>
             {isActive && projectDetail?.id === project.id && projectDetail.tasks && (
               projectDetail.tasks.map((task, index) => (
@@ -41,7 +41,7 @@ export default function ProjectList({projects,projectDetail}: {projects: ClientP
                   >
                     <circle cx="12" cy="12" r="10" />
                   </svg>
-                  <p className="text-xs pl-2">{task}</p>
+                  <p className="text-[10px] pl-2 md:text-xs truncate">{task ===''? 'Board Title Here' : task }</p>
                 </div>
               ))
             )}

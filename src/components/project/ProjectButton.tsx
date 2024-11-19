@@ -22,7 +22,7 @@ export function CreateProject() {
     }
   }
   return (
-    <SecondaryButton onClick={handleSubmit} className='w-[220px]'>
+    <SecondaryButton onClick={handleSubmit} className='text-xs md:text-sm'>
       Add New Page
     </SecondaryButton>
 

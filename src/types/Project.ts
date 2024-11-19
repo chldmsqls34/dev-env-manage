@@ -4,9 +4,8 @@ import { ObjectId } from "mongodb";
 export interface Project {
   _id?: ObjectId;
   title: string;
-  project_from?: Date;
-  project_to?: Date;
-
+  project_from?: string;
+  project_to?: string;
 }
 
 export interface ClientProject {
@@ -21,8 +20,8 @@ export interface Task {
   _id?: ObjectId;
   project_id: string;
   title: string;
-  task_from?: Date;
-  task_to?: Date;
+  task_from?: string;
+  task_to?: string;
   content?: string;
   status?: boolean;
 }

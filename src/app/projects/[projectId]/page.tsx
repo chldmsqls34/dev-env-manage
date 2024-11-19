@@ -26,33 +26,34 @@ export default async function Page({
 
   if (!tasks || tasks.length === 0) {
     return (
-      <main className="w-screen h-screen">
-        <div className="flex w-full h-full mx-40 justify-center">
-          <div className="w-28 md:w-64">
-            <Sidebar projects={projects} project={project}/>
-          </div>
-          <div className="flex flex-col h-full bg-slate-100 items-center justify-center">
-            <ProjectInfo project={project} progressData={progressData}/>
+      <main className="h-screen flex md:px-10 lg:px-24 xl:px-52">
+        <div className="flex w-full md:w-1/5 h-full justify-center">
+          <Sidebar projects={projects} project={project} />
+        </div>
+        <div className="flex w-full md:w-4/5">
+          <div className="flex flex-col w-full">
+            <ProjectInfo project={project} progressData={progressData} />
             <div className="flex flex-col w-full h-full px-6 py-4 space-y-4 bg-gray-100 items-center justify-center">
-              <h1 className="text-lg font-bold">There is no board yet.</h1>
-              <p className="text-sm">Click the button and start flashing!</p>
-              <CreateTaskWithSecondaryButton projectId={projectId} />
+                <h1 className="text-lg font-bold">There is no board yet.</h1>
+                <p className="text-sm">Click the button and start flashing!</p>
+                <CreateTaskWithSecondaryButton projectId={projectId} />
             </div>
           </div>
         </div>
       </main>
+
     );
   }
 
   return(
-    <main className="w-full h-screen flex">
-      <div className="flex w-full h-full mx-40 justify-center">
-        <div className="w-28 md:w-64">
-          <Sidebar projects={projects} project={project}/>
-        </div>
-        <div className="flex flex-col">
+    <main className="h-screen flex md:px-10 lg:px-24 xl:px-52">
+      <div className="flex w-full md:w-1/5 h-full justify-center">
+        <Sidebar projects={projects} project={project} />
+      </div>
+      <div className="flex w-full md:w-4/5">
+        <div className="flex flex-col w-full">
           <ProjectInfo project={project} progressData={progressData} />
-          <TaskList tasks={tasks}/>
+          <TaskList tasks={tasks} />
         </div>
       </div>
     </main>

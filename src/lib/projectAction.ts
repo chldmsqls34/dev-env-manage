@@ -13,11 +13,11 @@ async function getCollection(collectionName: string) {
 }
 
 
-export async function createProject(title: string) {
+export async function createProject() {
   try {
     const projectCollection = await getCollection('projects');
     const result = await projectCollection.insertOne({
-      title: title,
+      title:'',
     });
     const projectId = result.insertedId;
     const redirectUrl = `/projects/${projectId}`;

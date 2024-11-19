@@ -11,7 +11,7 @@ export function CreateProject() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await createProject('Enter Title Here');
+      const result = await createProject();
       if(result.data){
         router.push(result.data);
       }

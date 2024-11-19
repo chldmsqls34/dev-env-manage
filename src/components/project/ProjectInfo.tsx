@@ -30,7 +30,7 @@ export default function ProjectInfo({project,progressData}:{project:ClientProjec
       <Card className="w-full h-full rounded-none border-none">
         <CardHeader>
           <CardTitle>
-            <input type="text" value={title} className="text-4xl pt-12 pb-2 text-gray-700" onChange={(e)=>setTitle(e.target.value)}/>
+            <input type="text" value={title} className="text-4xl pt-12 pb-2 text-gray-700" onChange={(e)=>setTitle(e.target.value)} placeholder="Enter Title Name"/>
             <div className="flex space-x-4 items-center">
               <p className="text-sm text-gray-400">{completed}/{total}</p>
               <p className="text-sm text-gray-400">Completed</p>

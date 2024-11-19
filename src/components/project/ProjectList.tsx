@@ -30,7 +30,7 @@ export default function ProjectList({projects}: {projects: ClientProject[]}) {
             >
               <circle cx="12" cy="12" r="10" />
             </svg>
-            <p>{project.title}</p>
+            <p className=''>{project.title? project.title : 'Enter Title Name'}</p>
           </Link>
         );
       })}

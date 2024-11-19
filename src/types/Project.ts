@@ -6,7 +6,6 @@ export interface Project {
   title: string;
   project_from?: string;
   project_to?: string;
-
 }
 
 export interface ClientProject {

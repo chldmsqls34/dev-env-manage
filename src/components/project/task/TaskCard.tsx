@@ -50,7 +50,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
       </CardTitle>
     </CardHeader>
     <CardContent>
-      <div className="flex flex-row space-x-5 pb-5 items-center">
+      <div className="flex flex-row flex-wrap space-y-2 space-x-5 pb-5 items-center">
         <span>From</span>
         <Popover>
           <PopoverTrigger asChild>
@@ -122,7 +122,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                     </div>
                     <input type="text" value={title} className="text-3xl pt-5" onChange={(e)=>setTitle(e.target.value)} placeholder="Board Title Here"/>
                   </div>
-                  <div className="space-x-4">
+                  <div className="flex space-x-4">
                     <span>From</span>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -177,7 +177,7 @@ export default function TaskCard({task}:{task:ClientTask}) {
                   <EditorBox content={content} setContent={setContent}/>
                 </div>
 
-                <div className="flex justify-end space-x-4 py-2">
+                <div className="flex justify-end space-x-4 py-2 text-xs md:text-sm">
                   <TextButton onClick={()=>{setIsModalOpen(false)}}>Cancle</TextButton>
                   <UpdateTask taskId={task.id} title={title} startDate={startDate} endDate={endDate} content={content} status={check} closeModal={closeModal} />
                 </div>

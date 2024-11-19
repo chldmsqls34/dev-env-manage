@@ -29,7 +29,7 @@ export default function EditorBox({content,setContent}:{content:string,setConten
 
   return (
     <div className="flex flex-col w-full h-full">
-      <div ref={editorContainerRef} style={{height:"450px"}} >
+      <div ref={editorContainerRef} style={{height:"440px"}} >
 
       </div>
     </div>

@@ -54,15 +54,19 @@ export async function fetchAllProject(): Promise<ClientProject[]>{
 export async function fetchProjectById(projectId: string): Promise<ClientProject | null> {
   try {
     const projectCollection = await getCollection('projects');
+    const taskCollection = await getCollection('tasks');
     const project = await projectCollection.findOne({ _id: new ObjectId(projectId)}) as Project;
     if (!project) {
       return null;
     }
+    const tasks = await taskCollection.find({ project_id: projectId }).toArray() as Task[];
+    const taskTitles = tasks.map((task) => task.title);
     return {
       id: project._id?.toString() || '',
       title: project.title,
       project_from: project.project_from? project.project_from.toISOString().split('T')[0] : undefined,
       project_to: project.project_to? project.project_to.toISOString().split('T')[0] : undefined,
+      tasks: taskTitles
 
     } as ClientProject;
   } catch (error) {

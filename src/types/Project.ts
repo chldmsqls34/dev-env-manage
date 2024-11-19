@@ -6,6 +6,7 @@ export interface Project {
   title: string;
   project_from?: Date;
   project_to?: Date;
+
 }
 
 export interface ClientProject {
@@ -13,6 +14,7 @@ export interface ClientProject {
   title: string;
   project_from?: string;
   project_to?: string;
+  tasks?: string[];
 }
 
 export interface Task {

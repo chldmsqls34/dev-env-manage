@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <div className="flex gap-4 items-center flex-col sm:flex-row w-full h-full">
+    <main className="w-screen h-screen">
+      <div className="w-full h-full flex flex-col items-center justify-center">
         <Link href="/projects">
-          <p className="text-center">go</p>
+          <p>로그인</p>
         </Link>
       </div>
     </main>
